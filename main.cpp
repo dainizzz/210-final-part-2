@@ -103,7 +103,14 @@ int main() {
 
 		// BRACELET BOOTH
 		if (!braceletQueue.empty()) {
-			cout <<
+			cout << "Customer " << braceletQueue.front() << " was served at the friendship bracelet booth." << endl;
+			braceletQueue.erase(braceletQueue.begin());
+		} else
+			cout << "The friendship bracelet booth line is empty." << endl;
+
+		if (probability >= 50) {
+			braceletQueue.push_back(NAMES[getRandomIndex()]);
+			cout << "Customer " << braceletQueue.back() << " joined the line at the friendship bracelet booth." << endl;
 		}
 
 	}
