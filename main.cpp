@@ -32,7 +32,6 @@ int getRandomIndex();
 void printCoffeeShopQueue(Node *);
 
 int main() {
-	// MILESTONE 1 (Coffee Booth pt 1)
 	srand(time(0));
 
 	// Add first customer
@@ -50,40 +49,54 @@ int main() {
 	coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
 	coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
 
+	// MUFFIN BOOTH
+	deque<string> muffinQueue;
+	// Add initial customer
+	muffinQueue.push_back(NAMES[getRandomIndex()]);
 
-	// MILESTONE 2
 	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
+		cout << "ROUND " << i+1 << endl;
 		int probability = rand() % 101 + 1;
 
-		// COFFEE BOOTH
-		if (coffeeBoothHead) {
-			Node *temp = coffeeBoothHead;
-			coffeeBoothHead = coffeeBoothHead->next;
-			cout << temp->customerName << "'s order of " << temp->order << " was ready." << endl;
-			delete temp;
+		// // COFFEE BOOTH
+		// if (coffeeBoothHead) {
+		// 	Node *temp = coffeeBoothHead;
+		// 	coffeeBoothHead = coffeeBoothHead->next;
+		// 	cout << temp->customerName << "'s order of " << temp->order << " was ready." << endl;
+		// 	delete temp;
+		// }
+		//
+		// if (probability >= 50 ) {
+		// 	string name = NAMES[getRandomIndex()];
+		// 	string order = COFFEE_ORDERS[getRandomIndex()];
+		// 	cout << name << " ordered a " << order << '.' << endl;
+		// 	Node *temp = coffeeBoothHead;
+		// 	while (temp) {
+		// 		if (temp->next == nullptr)
+		// 			break;
+		// 		temp = temp->next;
+		// 	}
+		// 	temp = new Node;
+		// 	temp->customerName = NAMES[getRandomIndex()];
+		// 	temp->order = COFFEE_ORDERS[getRandomIndex()];
+		// 	delete temp;
+		// }
+
+		// MUFFIN BOOTH
+		if (!muffinQueue.empty()) {
+			cout << "Customer " << muffinQueue.front() << " was served at the muffin booth." << endl;
+			muffinQueue.pop_front();
+		} else
+			cout << "The muffin booth line is empty." << endl;
+
+		if (probability >= 50) {
+			muffinQueue.push_back(NAMES[getRandomIndex()]);
+			cout << "Customer " << muffinQueue.back() << " joined the line at the muffin booth." << endl;
 		}
 
-		if (probability >= 50 ) {
-			string name = NAMES[getRandomIndex()];
-			string order = COFFEE_ORDERS[getRandomIndex()];
-			cout << name << " ordered a " << order << '.' << endl;
-			Node *temp = coffeeBoothHead;
-			while (temp) {
-				if (temp->next == nullptr)
-					break;
-				temp = temp->next;
-			}
-			temp = new Node;
-			temp->customerName = NAMES[getRandomIndex()];
-			temp->order = COFFEE_ORDERS[getRandomIndex()];
-			delete temp;
-		}
+
+
 	}
-
-	/* MILESTONE 3 (Muffin Booth)
-	 * Add code simulating the queue of a muffin booth using a deque, and incorporate this new booth into the
-	 * simulation while keeping the probabilities the same
-	 */
 
 	/* MILESTONE 4 (Friendship Bracelets)
 	 * Add code simulating a friendship bracelet vendor using a vector
