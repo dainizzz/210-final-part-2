@@ -8,8 +8,8 @@ struct Node {
 	string order;
 };
 
-// The arrays generated using ChatGPT, unmodified:
-std::string names[] = {
+// Updated arrays that have more items, generated using ChatGPT:
+string names[] = {
 	"Alex",
 	"Jordan",
 	"Taylor",
@@ -19,10 +19,20 @@ std::string names[] = {
 	"Avery",
 	"Quinn",
 	"Parker",
-	"Reese"
+	"Reese",
+	"Dakota",
+	"Skyler",
+	"Emerson",
+	"Rowan",
+	"Hayden",
+	"Blake",
+	"Sawyer",
+	"Finley",
+	"Harper",
+	"Logan"
 };
 
-std::string coffeeOrders[] = {
+string coffeeOrders[] = {
 	"Latte",
 	"Cappuccino",
 	"Americano",
@@ -32,7 +42,17 @@ std::string coffeeOrders[] = {
 	"Cold Brew",
 	"Macchiato",
 	"Iced Latte",
-	"Caramel Frappuccino"
+	"Caramel Frappuccino",
+	"Vanilla Latte",
+	"Hazelnut Mocha",
+	"Cortado",
+	"Affogato",
+	"Irish Coffee",
+	"Pumpkin Spice Latte",
+	"Matcha Latte",
+	"Iced Americano",
+	"Double Espresso",
+	"Honey Almond Cold Brew"
 };
 
 int main() {
