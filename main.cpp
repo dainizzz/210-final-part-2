@@ -1,5 +1,7 @@
 #include <iostream>
 #include <deque>
+#include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -54,6 +56,11 @@ int main() {
 	// Add initial customer
 	muffinQueue.push_back(NAMES[getRandomIndex()]);
 
+	// FRIENDSHIP BRACELET BOOTH
+	vector<string> braceletQueue;
+	// Add initial customer
+	braceletQueue.push_back(NAMES[getRandomIndex()]);
+
 	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
 		cout << "ROUND " << i+1 << endl;
 		int probability = rand() % 101 + 1;
@@ -94,7 +101,10 @@ int main() {
 			cout << "Customer " << muffinQueue.back() << " joined the line at the muffin booth." << endl;
 		}
 
-
+		// BRACELET BOOTH
+		if (!braceletQueue.empty()) {
+			cout <<
+		}
 
 	}
 
