@@ -49,9 +49,6 @@ int main() {
 	coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
 	coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
 
-	//printCoffeeShopQueue(coffeeBoothHead);
-
-
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
@@ -62,15 +59,30 @@ int main() {
 	 * no customer is served, but 50% chance someone joins still remains
 	 */
 	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
+		int probability = rand() % 101 + 1;
+
+		// COFFEE BOOTH
 		if (coffeeBoothHead) {
-			cout << coffeeBoothHead->customerName << endl;
+			Node *temp = coffeeBoothHead;
+			coffeeBoothHead = coffeeBoothHead->next;
+			cout << temp->customerName << "'s order of " << temp->order << " was ready." << endl;
+			delete temp;
 		}
 
-		int probability = rand() % 101 + 1;
 		if (probability >= 50 ) {
 			string name = NAMES[getRandomIndex()];
 			string order = COFFEE_ORDERS[getRandomIndex()];
-			cout << name << " ordered a " << order << endl;
+			cout << name << " ordered a " << order << '.' << endl;
+			Node *temp = coffeeBoothHead;
+			while (temp) {
+				if (temp->next == nullptr)
+					break;
+				temp = temp->next;
+			}
+			temp = new Node;
+			temp->customerName = NAMES[getRandomIndex()];
+			temp->order = COFFEE_ORDERS[getRandomIndex()];
+			delete temp;
 		}
 	}
 
