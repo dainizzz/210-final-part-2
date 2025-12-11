@@ -8,9 +8,10 @@ const int ARRAY_SIZE = 20;
 struct Node {
 	string customerName;
 	string order;
-	Node* prev;
-	Node* next;
-	Node(string c, string o, Node* p = nullptr, Node* n = nullptr) {
+	Node *prev;
+	Node *next;
+
+	Node(string c, string o, Node *p = nullptr, Node *n = nullptr) {
 		customerName = c;
 		order = o;
 		prev = p;
@@ -18,23 +19,24 @@ struct Node {
 	}
 };
 
-// The following 4 functions were orginally from Lab 22, and have been modified to work with this Node struct.
-void push_back();
+// The following 4 functions were originally from Lab 22, and have been modified to work with this Node struct.
+void push_back(string, string, Node*, Node*);
 
-void push_front();
+void push_front(string, string, Node*, Node*);
 
-void pop_front();
+void pop_front(Node *);
 
-void pop_back();
+void pop_back(Node *);
 
+void printCoffeeShopQueue(Node *);
 
 // Updated arrays that have more items, generated using ChatGPT:
-const string names[ARRAY_SIZE] = {
+const string NAMES[ARRAY_SIZE] = {
 	"Alex", "Jordan", "Taylor", "Morgan", "Riley", "Casey", "Avery", "Quinn", "Parker", "Reese",
 	"Dakota", "Skyler", "Emerson", "Rowan", "Hayden", "Blake", "Sawyer", "Finley", "Harper", "Logan"
 };
 
-const string coffeeOrders[ARRAY_SIZE] = {
+const string COFFEE_ORDERS[ARRAY_SIZE] = {
 	"Latte", "Cappuccino", "Americano", "Mocha", "Espresso", "Flat White", "Cold Brew", "Macchiato",
 	"Iced Latte", "Caramel Frappuccino", "Vanilla Latte", "Hazelnut Mocha", "Cortado", "Affogato", "Irish Coffee",
 	"Pumpkin Spice Latte", "Matcha Latte", "Iced Americano", "Double Espresso", "Honey Almond Cold Brew"
@@ -57,6 +59,7 @@ int main() {
 	Node *coffeeBoothTail = nullptr;
 
 	// Add first customer
+	push_front(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothHead, coffeeBoothTail);
 
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
@@ -93,10 +96,10 @@ int getRandomIndex() {
 	return rand() % ARRAY_SIZE;
 }
 
-// Added from Lab 22, original form
-void push_back(int value, Node* tail) {
-	Node* newNode = new Node(value);
-	if (!tail)  // if there's no tail, the list is empty
+// Added from Lab 22, modified
+void push_back(string name, string order, Node* head, Node *tail) {
+	Node *newNode = new Node(name, order);
+	if (!tail) // if there's no tail, the list is empty
 		head = tail = newNode;
 	else {
 		tail->next = newNode;
@@ -105,9 +108,9 @@ void push_back(int value, Node* tail) {
 	}
 }
 
-void push_front(int value, Node* head) {
-	Node* newNode = new Node(value);
-	if (!head)  // if there's no head, the list is empty
+void push_front(string name, string order, Node* head, Node *tail) {
+	Node *newNode = new Node(name, order);
+	if (!head) // if there's no head, the list is empty
 		head = tail = newNode;
 	else {
 		newNode->next = head;
@@ -115,20 +118,32 @@ void push_front(int value, Node* head) {
 		head = newNode;
 	}
 }
-void pop_front(Node* head) {
+
+void pop_front(Node *head) {
 	if (!head) return; // Do nothing if list is empty
 
-	Node* temp = head; // Using a temp pointer to help avoid memory leaks
+	Node *temp = head; // Using a temp pointer to help avoid memory leaks
 	head = head->next; // Updating the head pointer to point to where the original head node's next pointer points
 	head->prev = nullptr; // Updating the prev pointer so it no longer points to the old head node
 	delete temp; // Deleting the old head node
 }
 
-void pop_back(Node* tail) {
+void pop_back(Node *tail) {
 	if (!tail) return; // Do nothing if list is empty
 
-	Node* temp = tail; // Using a temp pointer to help avoid memory leaks
+	Node *temp = tail; // Using a temp pointer to help avoid memory leaks
 	tail = tail->prev; // Updating the tail pointer to point to where the original tail node's prev pointer points
 	tail->next = nullptr; // Updating the tail pointer so it no longer points to the old tail node
 	delete temp; // Deleting the old tail node
+}
+
+// Modified version of function from Lab 22
+void printCoffeeShopQueue(Node *head) {
+	Node* current = head;
+	if (!current) return;
+	while (current) {
+		cout << current->customerName << ": " << current->order << endl;
+		current = current->next;
+	}
+	cout << endl;
 }
