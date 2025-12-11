@@ -2,6 +2,39 @@
 
 using namespace std;
 
+struct Node {
+	Node *next;
+	string name;
+	string order;
+};
+
+// The arrays generated using ChatGPT, unmodified:
+std::string names[] = {
+	"Alex",
+	"Jordan",
+	"Taylor",
+	"Morgan",
+	"Riley",
+	"Casey",
+	"Avery",
+	"Quinn",
+	"Parker",
+	"Reese"
+};
+
+std::string coffeeOrders[] = {
+	"Latte",
+	"Cappuccino",
+	"Americano",
+	"Mocha",
+	"Espresso",
+	"Flat White",
+	"Cold Brew",
+	"Macchiato",
+	"Iced Latte",
+	"Caramel Frappuccino"
+};
+
 int main() {
 	/* MILESTONE 1 (Coffee Booth pt 1)
 	 * Create a node struct for a linked list with string name and string drink order as the data in each node
