@@ -3,23 +3,13 @@
 using namespace std;
 
 const int ARRAY_SIZE = 20;
+const int SIMULATION_ROUNDS = 10;
 
 struct Node {
 	string customerName;
 	string order;
 	Node *next;
 };
-
-// The following 4 functions were originally from Lab 22, and have been modified to work with this Node struct.
-void push_back(string, string, Node *, Node *);
-
-void push_front(string, string, Node *, Node *);
-
-void pop_front(Node *);
-
-void pop_back(Node *);
-
-void printCoffeeShopQueue(Node *);
 
 // Updated arrays that have more items, generated using ChatGPT:
 const string NAMES[ARRAY_SIZE] = {
@@ -38,13 +28,11 @@ const string COFFEE_ORDERS[ARRAY_SIZE] = {
 // returns: an int value representing an index
 int getRandomIndex();
 
+void printCoffeeShopQueue(Node *);
+
 int main() {
-	/* MILESTONE 1 (Coffee Booth pt 1)
-	 * Create a node struct for a linked list with string name and string drink order as the data in each node
-	 * Use LLM for creating data set of data arrays w/ names and drink orders
-	 */
-	// Temporarily using 3 while testing
-	srand(3);
+	// MILESTONE 1 (Coffee Booth pt 1)
+	srand(time(0));
 
 	// Add first customer
 	Node *coffeeBoothHead = new Node;
@@ -61,13 +49,9 @@ int main() {
 	coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
 	coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
 
-	printCoffeeShopQueue(coffeeBoothHead);
+	//printCoffeeShopQueue(coffeeBoothHead);
 
-	while (coffeeBoothHead != nullptr) {
-		Node *cur = coffeeBoothHead;
-		coffeeBoothHead = cur->next;
-		delete cur;
-	}
+
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
@@ -77,6 +61,18 @@ int main() {
 	 * If the queue is empty:
 	 * no customer is served, but 50% chance someone joins still remains
 	 */
+	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
+		if (coffeeBoothHead) {
+			cout << coffeeBoothHead->customerName << endl;
+		}
+
+		int probability = rand() % 101 + 1;
+		if (probability >= 50 ) {
+			string name = NAMES[getRandomIndex()];
+			string order = COFFEE_ORDERS[getRandomIndex()];
+			cout << name << " ordered a " << order << endl;
+		}
+	}
 
 	/* MILESTONE 3 (Muffin Booth)
 	 * Add code simulating the queue of a muffin booth using a deque, and incorporate this new booth into the
@@ -95,6 +91,12 @@ int main() {
 	/* MILESTONE 6
 	 * Make sure each round shows all 4 booths' activities
 	 */
+
+	while (coffeeBoothHead) {
+		Node *cur = coffeeBoothHead;
+		coffeeBoothHead = cur->next;
+		delete cur;
+	}
 
 	return 0;
 }
