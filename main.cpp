@@ -4,13 +4,14 @@ using namespace std;
 
 const int ARRAY_SIZE = 20;
 
+// Updated Node referring to code from lab 22
 struct Node {
 	string customerName;
 	string order;
 	Node* prev;
 	Node* next;
 	Node(string c, string o, Node* p = nullptr, Node* n = nullptr) {
-		customerName = n;
+		customerName = c;
 		order = o;
 		prev = p;
 		next = n;
