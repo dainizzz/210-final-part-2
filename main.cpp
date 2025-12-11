@@ -4,19 +4,16 @@ using namespace std;
 
 const int ARRAY_SIZE = 20;
 
-// Updated Node by referring to code from lab 22
 struct Node {
 	string customerName;
 	string order;
-	// Node *prev;
 	Node *next;
 
-	// Node(string c, string o, Node *p = nullptr, Node *n = nullptr) {
-	// 	customerName = c;
-	// 	order = o;
-	// 	prev = p;
-	// 	next = n;
-	// }
+	Node(string c, string o, Node *n =nullptr) {
+		customerName = c;
+		order = order;
+		next = n;
+	}
 };
 
 // The following 4 functions were originally from Lab 22, and have been modified to work with this Node struct.
@@ -54,35 +51,29 @@ int main() {
 	 */
 	// Temporarily using 3 while testing
 	srand(3);
-	// Using a doubly linked list because customers will be served from front of queue and added to back of queue
-	// Node *coffeeBoothTail = nullptr;
 
 	// Add first customer
-	Node *coffeeBoothHead = new Node;
-	coffeeBoothHead->customerName = NAMES[getRandomIndex()];
-	coffeeBoothHead->order = COFFEE_ORDERS[getRandomIndex()];
+	Node *coffeeBoothHead = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
+	// coffeeBoothHead->customerName = NAMES[getRandomIndex()];
+	// coffeeBoothHead->order = COFFEE_ORDERS[getRandomIndex()];
 
-	// newNode = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], nullptr, nullptr);
-	// coffeeBoothHead = newNode;
-	// coffeeBoothTail = newNode;
-	//
-	// // Adding customer to back of line
-	// Node *newCustomer = nullptr;
-	// newCustomer = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothTail, nullptr);
-	// coffeeBoothTail = newCustomer;
-	//
-	// printCoffeeShopQueue(coffeeBoothHead);
-	// delete newCustomer;
-	//
-	//
+	// Add second customer
+	coffeeBoothHead->next = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
+	// coffeeBoothHead->next->customerName = NAMES[getRandomIndex()];
+	// coffeeBoothHead->next->order = COFFEE_ORDERS[getRandomIndex()];
 
-	Node *temp = coffeeBoothHead;
-	while (temp) {
-		cout << temp->customerName << ": " << temp->order << endl;
-		temp = temp->next;
+	// Add third customer
+	coffeeBoothHead->next->next = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
+	// coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
+	// coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
+
+	printCoffeeShopQueue(coffeeBoothHead);
+
+	while (coffeeBoothHead != nullptr) {
+		Node *cur = coffeeBoothHead;
+		coffeeBoothHead = cur->next;
+		delete cur;
 	}
-	delete temp;
-	delete coffeeBoothHead;
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
@@ -117,48 +108,6 @@ int main() {
 int getRandomIndex() {
 	return rand() % ARRAY_SIZE;
 }
-
-// Added from Lab 22, modified
-// void push_back(string name, string order, Node *head, Node *tail) {
-// 	Node *newNode = new Node(name, order);
-// 	if (!tail) // if there's no tail, the list is empty
-// 		head = tail = newNode;
-// 	else {
-// 		tail->next = newNode;
-// 		newNode->prev = tail;
-// 		tail = newNode;
-// 	}
-// }
-//
-// void push_front(string name, string order, Node *head, Node *tail) {
-// 	Node *newNode = new Node(name, order);
-// 	if (!head) {
-// 		head = tail = newNode;
-// 	}
-// 	else {
-// 		newNode->next = head;
-// 		head->prev = newNode;
-// 		head = newNode;
-// 	}
-// }
-//
-// void pop_front(Node *head) {
-// 	if (!head) return; // Do nothing if list is empty
-//
-// 	Node *temp = head; // Using a temp pointer to help avoid memory leaks
-// 	head = head->next; // Updating the head pointer to point to where the original head node's next pointer points
-// 	head->prev = nullptr; // Updating the prev pointer so it no longer points to the old head node
-// 	delete temp; // Deleting the old head node
-// }
-//
-// void pop_back(Node *tail) {
-// 	if (!tail) return; // Do nothing if list is empty
-//
-// 	Node *temp = tail; // Using a temp pointer to help avoid memory leaks
-// 	tail = tail->prev; // Updating the tail pointer to point to where the original tail node's prev pointer points
-// 	tail->next = nullptr; // Updating the tail pointer so it no longer points to the old tail node
-// 	delete temp; // Deleting the old tail node
-// }
 
 // Modified version of function from Lab 22
 void printCoffeeShopQueue(Node *head) {
