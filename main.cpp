@@ -20,9 +20,9 @@ struct Node {
 };
 
 // The following 4 functions were originally from Lab 22, and have been modified to work with this Node struct.
-void push_back(string, string, Node*, Node*);
+void push_back(string, string, Node *, Node *);
 
-void push_front(string, string, Node*, Node*);
+void push_front(string, string, Node *, Node *);
 
 void pop_front(Node *);
 
@@ -97,7 +97,7 @@ int getRandomIndex() {
 }
 
 // Added from Lab 22, modified
-void push_back(string name, string order, Node* head, Node *tail) {
+void push_back(string name, string order, Node *head, Node *tail) {
 	Node *newNode = new Node(name, order);
 	if (!tail) // if there's no tail, the list is empty
 		head = tail = newNode;
@@ -108,10 +108,11 @@ void push_back(string name, string order, Node* head, Node *tail) {
 	}
 }
 
-void push_front(string name, string order, Node* head, Node *tail) {
+void push_front(string name, string order, Node *head, Node *tail) {
 	Node *newNode = new Node(name, order);
-	if (!head) // if there's no head, the list is empty
+	if (!head) {
 		head = tail = newNode;
+	}
 	else {
 		newNode->next = head;
 		head->prev = newNode;
@@ -139,7 +140,7 @@ void pop_back(Node *tail) {
 
 // Modified version of function from Lab 22
 void printCoffeeShopQueue(Node *head) {
-	Node* current = head;
+	Node *current = head;
 	if (!current) return;
 	while (current) {
 		cout << current->customerName << ": " << current->order << endl;
