@@ -11,57 +11,32 @@ struct Node {
 };
 
 // Updated arrays that have more items, generated using ChatGPT:
-string names[ARRAY_SIZE] = {
-	"Alex",
-	"Jordan",
-	"Taylor",
-	"Morgan",
-	"Riley",
-	"Casey",
-	"Avery",
-	"Quinn",
-	"Parker",
-	"Reese",
-	"Dakota",
-	"Skyler",
-	"Emerson",
-	"Rowan",
-	"Hayden",
-	"Blake",
-	"Sawyer",
-	"Finley",
-	"Harper",
-	"Logan"
+const string names[ARRAY_SIZE] = {
+	"Alex", "Jordan", "Taylor", "Morgan", "Riley", "Casey", "Avery", "Quinn", "Parker", "Reese",
+	"Dakota", "Skyler", "Emerson", "Rowan", "Hayden", "Blake", "Sawyer", "Finley", "Harper", "Logan"
 };
 
-string coffeeOrders[ARRAY_SIZE] = {
-	"Latte",
-	"Cappuccino",
-	"Americano",
-	"Mocha",
-	"Espresso",
-	"Flat White",
-	"Cold Brew",
-	"Macchiato",
-	"Iced Latte",
-	"Caramel Frappuccino",
-	"Vanilla Latte",
-	"Hazelnut Mocha",
-	"Cortado",
-	"Affogato",
-	"Irish Coffee",
-	"Pumpkin Spice Latte",
-	"Matcha Latte",
-	"Iced Americano",
-	"Double Espresso",
-	"Honey Almond Cold Brew"
+const string coffeeOrders[ARRAY_SIZE] = {
+	"Latte", "Cappuccino", "Americano", "Mocha", "Espresso", "Flat White", "Cold Brew", "Macchiato",
+	"Iced Latte", "Caramel Frappuccino", "Vanilla Latte", "Hazelnut Mocha", "Cortado", "Affogato", "Irish Coffee",
+	"Pumpkin Spice Latte", "Matcha Latte", "Iced Americano", "Double Espresso", "Honey Almond Cold Brew"
 };
+
+// getRandomIndex() generates a random number within the range 0 to ARRAY_SIZE
+// arguments: none
+// returns: an int value representing an index
+int getRandomIndex();
 
 int main() {
 	/* MILESTONE 1 (Coffee Booth pt 1)
 	 * Create a node struct for a linked list with string name and string drink order as the data in each node
 	 * Use LLM for creating data set of data arrays w/ names and drink orders
 	 */
+	// Temporarily using 3 while testing
+	srand(3);
+	// The head node of the linked list representing the coffee booth queue
+	Node *coffeeBoothQueue = nullptr;
+	coffeeBoothQueue = new Node;
 
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
@@ -92,4 +67,8 @@ int main() {
 	 */
 
 	return 0;
+}
+
+int getRandomIndex() {
+	return rand() % ARRAY_SIZE;
 }
