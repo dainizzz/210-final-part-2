@@ -5,9 +5,16 @@ using namespace std;
 const int ARRAY_SIZE = 20;
 
 struct Node {
-	Node *next;
-	string name;
+	string customerName;
 	string order;
+	Node* prev;
+	Node* next;
+	Node(string c, string o, Node* p = nullptr, Node* n = nullptr) {
+		customerName = n;
+		order = o;
+		prev = p;
+		next = n;
+	}
 };
 
 // Updated arrays that have more items, generated using ChatGPT:
@@ -35,8 +42,10 @@ int main() {
 	// Temporarily using 3 while testing
 	srand(3);
 	// The head node of the linked list representing the coffee booth queue
-	Node *coffeeBoothQueue = nullptr;
-	coffeeBoothQueue = new Node;
+	Node *coffeeBoothQueueHead = nullptr;
+	coffeeBoothQueueHead = new Node;
+
+	// Add first customer
 
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
