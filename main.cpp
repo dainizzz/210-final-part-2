@@ -1,7 +1,7 @@
 #include <iostream>
 #include <deque>
 #include <vector>
-#include <stack>
+#include <list>
 
 using namespace std;
 
@@ -61,6 +61,11 @@ int main() {
 	// Add initial customer
 	braceletQueue.push_back(NAMES[getRandomIndex()]);
 
+	// POPCORN BOOTH
+	list<string> popcornQueue;
+	// Add initial customer
+	popcornQueue.push_back(NAMES[getRandomIndex()]);
+
 	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
 		cout << "ROUND " << i+1 << endl;
 		int probability = rand() % 101 + 1;
@@ -113,16 +118,18 @@ int main() {
 			cout << "Customer " << braceletQueue.back() << " joined the line at the friendship bracelet booth." << endl;
 		}
 
+		// POPCORN BOOTH
+		if (!popcornQueue.empty()) {
+			cout << "Customer " << popcornQueue.front() << " was served at the popcorn booth." << endl;
+			popcornQueue.pop_front();
+		} else
+			cout << "The popcorn booth line is empty." << endl;
+
+		if (probability >= 50) {
+			popcornQueue.push_back(NAMES[getRandomIndex()]);
+			cout << "Customer " << popcornQueue.back() << " joined the line at the popcorn booth." << endl;
+		}
 	}
-
-	/* MILESTONE 4 (Friendship Bracelets)
-	 * Add code simulating a friendship bracelet vendor using a vector
-	 */
-
-	/* MILESTONE 5
-	 * Add another vendor showing use of a different data structure not yet used in this program selling something
-	 * you choose
-	 */
 
 	/* MILESTONE 6
 	 * Make sure each round shows all 4 booths' activities
