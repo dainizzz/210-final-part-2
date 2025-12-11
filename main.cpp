@@ -2,6 +2,8 @@
 
 using namespace std;
 
+const int ARRAY_SIZE = 20;
+
 struct Node {
 	Node *next;
 	string name;
@@ -9,7 +11,7 @@ struct Node {
 };
 
 // Updated arrays that have more items, generated using ChatGPT:
-string names[] = {
+string names[ARRAY_SIZE] = {
 	"Alex",
 	"Jordan",
 	"Taylor",
@@ -32,7 +34,7 @@ string names[] = {
 	"Logan"
 };
 
-string coffeeOrders[] = {
+string coffeeOrders[ARRAY_SIZE] = {
 	"Latte",
 	"Cappuccino",
 	"Americano",
@@ -60,6 +62,7 @@ int main() {
 	 * Create a node struct for a linked list with string name and string drink order as the data in each node
 	 * Use LLM for creating data set of data arrays w/ names and drink orders
 	 */
+
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
