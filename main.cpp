@@ -58,17 +58,24 @@ int main() {
 	Node *coffeeBoothHead = nullptr;
 	Node *coffeeBoothTail = nullptr;
 
-	// push_back(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothHead, coffeeBoothTail);
-	// push_back(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothHead, coffeeBoothTail);
-
 	// Add first customer
 	Node *newNode = nullptr;
 	newNode = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], nullptr, nullptr);
 	coffeeBoothHead = newNode;
 	coffeeBoothTail = newNode;
 
+	// Adding customer to back of line
+	Node *newCustomer = nullptr;
+	newCustomer = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothTail, nullptr);
+	coffeeBoothTail = newCustomer;
+
 	printCoffeeShopQueue(coffeeBoothHead);
-	delete newNode;
+
+	while (coffeeBoothHead) {
+		Node* temp = coffeeBoothHead;
+		coffeeBoothHead = coffeeBoothHead->next;
+		delete temp;
+	}
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
