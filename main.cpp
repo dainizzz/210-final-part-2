@@ -70,29 +70,29 @@ int main() {
 		cout << "ROUND " << i+1 << endl;
 		int probability = rand() % 101 + 1;
 
-		// // COFFEE BOOTH
-		// if (coffeeBoothHead) {
-		// 	Node *temp = coffeeBoothHead;
-		// 	coffeeBoothHead = coffeeBoothHead->next;
-		// 	cout << temp->customerName << "'s order of " << temp->order << " was ready." << endl;
-		// 	delete temp;
-		// }
-		//
-		// if (probability >= 50 ) {
-		// 	string name = NAMES[getRandomIndex()];
-		// 	string order = COFFEE_ORDERS[getRandomIndex()];
-		// 	cout << name << " ordered a " << order << '.' << endl;
-		// 	Node *temp = coffeeBoothHead;
-		// 	while (temp) {
-		// 		if (temp->next == nullptr)
-		// 			break;
-		// 		temp = temp->next;
-		// 	}
-		// 	temp = new Node;
-		// 	temp->customerName = NAMES[getRandomIndex()];
-		// 	temp->order = COFFEE_ORDERS[getRandomIndex()];
-		// 	delete temp;
-		// }
+		// COFFEE BOOTH - not fully functional
+		if (coffeeBoothHead) {
+			Node *temp = coffeeBoothHead;
+			coffeeBoothHead = coffeeBoothHead->next;
+			cout << temp->customerName << "'s order of " << temp->order << " was ready." << endl;
+			delete temp;
+		}
+
+		if (probability >= 50 ) {
+			string name = NAMES[getRandomIndex()];
+			string order = COFFEE_ORDERS[getRandomIndex()];
+			cout << name << " ordered a " << order << '.' << endl;
+			Node *temp = coffeeBoothHead;
+			while (temp) {
+				if (temp->next == nullptr)
+					break;
+				temp = temp->next;
+			}
+			temp = new Node;
+			temp->customerName = NAMES[getRandomIndex()];
+			temp->order = COFFEE_ORDERS[getRandomIndex()];
+			delete temp;
+		}
 
 		// MUFFIN BOOTH
 		if (!muffinQueue.empty()) {
