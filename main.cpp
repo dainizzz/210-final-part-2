@@ -8,12 +8,6 @@ struct Node {
 	string customerName;
 	string order;
 	Node *next;
-
-	Node(string c, string o, Node *n =nullptr) {
-		customerName = c;
-		order = order;
-		next = n;
-	}
 };
 
 // The following 4 functions were originally from Lab 22, and have been modified to work with this Node struct.
@@ -53,19 +47,19 @@ int main() {
 	srand(3);
 
 	// Add first customer
-	Node *coffeeBoothHead = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
-	// coffeeBoothHead->customerName = NAMES[getRandomIndex()];
-	// coffeeBoothHead->order = COFFEE_ORDERS[getRandomIndex()];
+	Node *coffeeBoothHead = new Node;
+	coffeeBoothHead->customerName = NAMES[getRandomIndex()];
+	coffeeBoothHead->order = COFFEE_ORDERS[getRandomIndex()];
 
 	// Add second customer
-	coffeeBoothHead->next = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
-	// coffeeBoothHead->next->customerName = NAMES[getRandomIndex()];
-	// coffeeBoothHead->next->order = COFFEE_ORDERS[getRandomIndex()];
+	coffeeBoothHead->next = new Node;
+	coffeeBoothHead->next->customerName = NAMES[getRandomIndex()];
+	coffeeBoothHead->next->order = COFFEE_ORDERS[getRandomIndex()];
 
 	// Add third customer
-	coffeeBoothHead->next->next = new Node(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()]);
-	// coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
-	// coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
+	coffeeBoothHead->next->next = new Node;
+	coffeeBoothHead->next->next->customerName = NAMES[getRandomIndex()];
+	coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
 
 	printCoffeeShopQueue(coffeeBoothHead);
 
