@@ -18,46 +18,14 @@ struct Node {
 	}
 };
 
+// The following 4 functions were orginally from Lab 22, and have been modified to work with this Node struct.
+void push_back();
 
-// Added from Lab 22, original form
-void push_back(int value) {
-	Node* newNode = new Node(value);
-	if (!tail)  // if there's no tail, the list is empty
-		head = tail = newNode;
-	else {
-		tail->next = newNode;
-		newNode->prev = tail;
-		tail = newNode;
-	}
-}
+void push_front();
 
-void push_front(int value) {
-	Node* newNode = new Node(value);
-	if (!head)  // if there's no head, the list is empty
-		head = tail = newNode;
-	else {
-		newNode->next = head;
-		head->prev = newNode;
-		head = newNode;
-	}
-}
-void pop_front() {
-	if (!head) return; // Do nothing if list is empty
+void pop_front();
 
-	Node* temp = head; // Using a temp pointer to help avoid memory leaks
-	head = head->next; // Updating the head pointer to point to where the original head node's next pointer points
-	head->prev = nullptr; // Updating the prev pointer so it no longer points to the old head node
-	delete temp; // Deleting the old head node
-}
-
-void pop_back() {
-	if (!tail) return; // Do nothing if list is empty
-
-	Node* temp = tail; // Using a temp pointer to help avoid memory leaks
-	tail = tail->prev; // Updating the tail pointer to point to where the original tail node's prev pointer points
-	tail->next = nullptr; // Updating the tail pointer so it no longer points to the old tail node
-	delete temp; // Deleting the old tail node
-}
+void pop_back();
 
 
 // Updated arrays that have more items, generated using ChatGPT:
@@ -123,4 +91,44 @@ int main() {
 
 int getRandomIndex() {
 	return rand() % ARRAY_SIZE;
+}
+
+// Added from Lab 22, original form
+void push_back(int value, Node* tail) {
+	Node* newNode = new Node(value);
+	if (!tail)  // if there's no tail, the list is empty
+		head = tail = newNode;
+	else {
+		tail->next = newNode;
+		newNode->prev = tail;
+		tail = newNode;
+	}
+}
+
+void push_front(int value, Node* head) {
+	Node* newNode = new Node(value);
+	if (!head)  // if there's no head, the list is empty
+		head = tail = newNode;
+	else {
+		newNode->next = head;
+		head->prev = newNode;
+		head = newNode;
+	}
+}
+void pop_front(Node* head) {
+	if (!head) return; // Do nothing if list is empty
+
+	Node* temp = head; // Using a temp pointer to help avoid memory leaks
+	head = head->next; // Updating the head pointer to point to where the original head node's next pointer points
+	head->prev = nullptr; // Updating the prev pointer so it no longer points to the old head node
+	delete temp; // Deleting the old head node
+}
+
+void pop_back(Node* tail) {
+	if (!tail) return; // Do nothing if list is empty
+
+	Node* temp = tail; // Using a temp pointer to help avoid memory leaks
+	tail = tail->prev; // Updating the tail pointer to point to where the original tail node's prev pointer points
+	tail->next = nullptr; // Updating the tail pointer so it no longer points to the old tail node
+	delete temp; // Deleting the old tail node
 }
