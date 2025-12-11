@@ -1,4 +1,5 @@
 #include <iostream>
+#include <deque>
 
 using namespace std;
 
@@ -50,14 +51,7 @@ int main() {
 	coffeeBoothHead->next->next->order = COFFEE_ORDERS[getRandomIndex()];
 
 
-	/* MILESTONE 2 (Coffee Booth pt 2)
-	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
-	 * In any round:
-	 * 50% chance someone joins queue
-	 * Customer at the head of the queue is ALWAYS served in each round
-	 * If the queue is empty:
-	 * no customer is served, but 50% chance someone joins still remains
-	 */
+	// MILESTONE 2
 	for (int i = 0; i < SIMULATION_ROUNDS; i++) {
 		int probability = rand() % 101 + 1;
 
