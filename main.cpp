@@ -4,7 +4,7 @@ using namespace std;
 
 const int ARRAY_SIZE = 20;
 
-// Updated Node referring to code from lab 22
+// Updated Node by referring to code from lab 22
 struct Node {
 	string customerName;
 	string order;
@@ -17,6 +17,48 @@ struct Node {
 		next = n;
 	}
 };
+
+
+// Added from Lab 22, original form
+void push_back(int value) {
+	Node* newNode = new Node(value);
+	if (!tail)  // if there's no tail, the list is empty
+		head = tail = newNode;
+	else {
+		tail->next = newNode;
+		newNode->prev = tail;
+		tail = newNode;
+	}
+}
+
+void push_front(int value) {
+	Node* newNode = new Node(value);
+	if (!head)  // if there's no head, the list is empty
+		head = tail = newNode;
+	else {
+		newNode->next = head;
+		head->prev = newNode;
+		head = newNode;
+	}
+}
+void pop_front() {
+	if (!head) return; // Do nothing if list is empty
+
+	Node* temp = head; // Using a temp pointer to help avoid memory leaks
+	head = head->next; // Updating the head pointer to point to where the original head node's next pointer points
+	head->prev = nullptr; // Updating the prev pointer so it no longer points to the old head node
+	delete temp; // Deleting the old head node
+}
+
+void pop_back() {
+	if (!tail) return; // Do nothing if list is empty
+
+	Node* temp = tail; // Using a temp pointer to help avoid memory leaks
+	tail = tail->prev; // Updating the tail pointer to point to where the original tail node's prev pointer points
+	tail->next = nullptr; // Updating the tail pointer so it no longer points to the old tail node
+	delete temp; // Deleting the old tail node
+}
+
 
 // Updated arrays that have more items, generated using ChatGPT:
 const string names[ARRAY_SIZE] = {
@@ -42,9 +84,9 @@ int main() {
 	 */
 	// Temporarily using 3 while testing
 	srand(3);
-	// The head node of the linked list representing the coffee booth queue
-	Node *coffeeBoothQueueHead = nullptr;
-	coffeeBoothQueueHead = new Node;
+	// Using a doubly linked list because customers will be served from front of queue and added to back of queue
+	Node *coffeeBoothHead = nullptr;
+	Node *coffeeBoothTail = nullptr;
 
 	// Add first customer
 
