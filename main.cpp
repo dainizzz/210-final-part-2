@@ -60,7 +60,7 @@ int main() {
 
 	// Add first customer
 	push_front(NAMES[getRandomIndex()], COFFEE_ORDERS[getRandomIndex()], coffeeBoothHead, coffeeBoothTail);
-
+	printCoffeeShopQueue(coffeeBoothHead);
 
 	/* MILESTONE 2 (Coffee Booth pt 2)
 	 * Run simulation for 10 rounds and initialize queue w/ 3 customers
